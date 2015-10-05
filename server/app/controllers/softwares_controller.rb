@@ -26,4 +26,18 @@ class SoftwaresController < ApplicationController
          render json: nil
       end
    end
+
+   # Destruir un software
+   def destroy
+      Software.find(params[:id]).destroy
+
+      render nothing: true, status: 200
+   end
+
+   # Destruir todo el software de una sala
+   def destroyAll
+      Software.destroy_all(sala: params[:sala_id])
+
+      render nothing: true, status: 200
+   end
 end
