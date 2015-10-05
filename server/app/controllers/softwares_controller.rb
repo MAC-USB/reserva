@@ -9,10 +9,21 @@ class SoftwaresController < ApplicationController
       render json: @sw_list
    end
 
-   # Detalles del software
+   # Detalles de un software
    def show
       @sw = Software.find(params[:id])
 
       render json: @sw
+   end
+
+   # Crear software
+   def create
+      @sw = Software.new(params.require(:software).permit(:nombre, :version, :link))
+      @sw.sala = params[:sala_id]
+      if @sw.save
+         render json: @sw
+      else
+         render json: nil
+      end
    end
 end
