@@ -21,9 +21,9 @@ class SoftwaresController < ApplicationController
     @sw = Software.new(params.require(:software).permit(:nombre, :version, :link))
     @sw.sala = params[:sala_id]
     if @sw.save
-      render json: @sw
+      render nothing: true, status: 201
     else
-      render json: nil
+      render nothing: true, status: 400
     end
   end
 

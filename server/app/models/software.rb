@@ -1,4 +1,3 @@
 class Software < ActiveRecord::Base
-  validates :nombre, presence: true
-  #validates :sala, uniqueness: {scope: [:nombre, :version]}
+  validates :nombre, presence: true, uniqueness: {scope [:nombre, :version]}
 end
