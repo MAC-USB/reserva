@@ -3,6 +3,6 @@ class Materia < ActiveRecord::Base
 	validates :nombre, presence: true
 	validates :codigo, presence: true,
 	 				   format: {with: /\A[a-zA-Z]{2}\d{4}\z/},
-	 				   uniqueness: true
-	# validates :departamento, presence: true
+	 				   uniqueness: {case_sensitive: false}
+	validates :departamento, presence: true
 end
