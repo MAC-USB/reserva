@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004213821) do
+ActiveRecord::Schema.define(version: 20151007050921) do
+
+  create_table "salas", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "capacidad"
+    t.text     "ubicacion"
+    t.string   "responsable"
+    t.boolean  "windows"
+    t.boolean  "linux"
+    t.boolean  "video_beam"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "softwares", force: :cascade do |t|
     t.string   "nombre"
