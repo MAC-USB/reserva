@@ -5,12 +5,17 @@ class MateriasController < ApplicationController
 	end
 
 	def show
-		@materia = Materia.find(params[:codigo])
-		render json: @materia
+		@materia = Materia.find_by(codigo: params[:codigo])
+		if @materia
+			render json: @materia
+		else
+			render nothing: true, status: 404
+		end
 	end
 
 	def create
-		@materia = Materia.new(params.require(:codigo, :nombre, :departamento))
+		@materia = Materia.new(codigo: params.require(:codigo),nombre: params.require(:nombre),
+													 departamento: params.require(:departamento))
 		if @materia.save
 			render nothing: true, status: 201
 		else
@@ -19,8 +24,11 @@ class MateriasController < ApplicationController
 	end
 
 	def update
-		@materia = Materia.find(params[:codigo])
-		if @materia.update_attributes(params.permit(:nombre, :departamento))
+		@materia = Materia.find_by(codigo: params[:codigo])
+		if @materia.nil?
+			render nothing: true, status: 404
+		
+		elsif @materia.update_attributes(params.permit(:nombre, :departamento))
 			render nothing: true, status: 200
 		else
 			render nothing: true, status: 400
@@ -28,7 +36,7 @@ class MateriasController < ApplicationController
 	end
 
 	def destroy
-		Materia.find(params[:codigo]).destroy
+		Materia.find_by(codigo: params[:codigo]).destroy
 
 		render nothing: true, status: 200
 	end

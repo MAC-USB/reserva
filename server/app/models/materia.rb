@@ -1,5 +1,5 @@
 class Materia < ActiveRecord::Base
-	before_save {self.codigo = codigo.downcase}
+	before_save {self.codigo = codigo.upcase}
 	validates :nombre, presence: true
 	validates :codigo, presence: true,
 	 				   format: {with: /\A[a-zA-Z]{2}\d{4}\z/},
