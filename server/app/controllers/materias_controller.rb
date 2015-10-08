@@ -9,36 +9,37 @@ class MateriasController < ApplicationController
 		if @materia
 			render json: @materia
 		else
-			render nothing: true, status: 404
+			render nothing: true, status: :not_found
 		end
 	end
 
 	def create
-		@materia = Materia.new(codigo: params.require(:codigo),nombre: params.require(:nombre),
-													 departamento: params.require(:departamento))
+		@materia = Materia.new(params.require(:materia).permit(:nombre, :codigo, :departamento))
 		if @materia.save
-			render nothing: true, status: 201
+			render nothing: true, status: :created
 		else
-			render nothing: true, status: 400
+			render nothing: true, status: :conflict
 		end
 	end
 
 	def update
 		@materia = Materia.find_by(codigo: params[:codigo])
 		if @materia.nil?
-			render nothing: true, status: 404
-		
-		elsif @materia.update_attributes(params.permit(:nombre, :departamento))
-			render nothing: true, status: 200
+			render nothing: true, status: :not_found
+		elsif @materia.update_attributes(params.require(:materia).permit(:nombre, :departamento))
+			render nothing: true, status: :ok
 		else
-			render nothing: true, status: 400
+			render nothing: true, status: :conflict
 		end
 	end
 
 	def destroy
-		Materia.find_by(codigo: params[:codigo]).destroy
+		@materia = Materia.find_by(codigo: params[:codigo])
+		if @materia
+			@materia.destroy
+		end
 
-		render nothing: true, status: 200
+		render nothing: true, status: :ok
 	end
 
 end
