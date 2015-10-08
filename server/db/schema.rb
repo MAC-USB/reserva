@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007142227) do
+ActiveRecord::Schema.define(version: 20151008232013) do
 
   create_table "materias", force: :cascade do |t|
     t.string   "codigo"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20151007142227) do
   end
 
   create_table "salas", force: :cascade do |t|
-    t.string   "name"
+    t.string   "nombre"
     t.integer  "capacidad"
     t.text     "ubicacion"
     t.string   "responsable"

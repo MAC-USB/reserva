@@ -14,7 +14,7 @@ co3211 = Materia.create(codigo: "CO3211",
   nombre: "Cálculo numérico",
   departamento: "CI")
 
-a = Sala.create(name: "A", 
+a = Sala.create(nombre: "A", 
   capacidad: "19", 
   ubicacion: "MYS planta baja", 
   responsable: "AA", 
@@ -22,7 +22,7 @@ a = Sala.create(name: "A",
   linux: true, 
   video_beam: true)
 
-e = Sala.create(name: "E", 
+e = Sala.create(nombre: "E", 
   capacidad: "12", 
   ubicacion: "MYS planta baja", 
   responsable: "JP", 
