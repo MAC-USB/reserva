@@ -11,9 +11,13 @@ class SoftwaresController < ApplicationController
 
   # Detalles de un software
   def show
-    @sw = Software.find(params[:id])
+    @sw = Software.find_by(id: params[:id])
 
-    render json: @sw
+    if @sw
+      render json: @sw
+    else
+      render nothing: true, status: :not_found
+    end
   end
 
   # Crear software
@@ -21,34 +25,39 @@ class SoftwaresController < ApplicationController
     @sw = Software.new(params.require(:software).permit(:nombre, :version, :link))
     @sw.sala = params[:sala_id]
     if @sw.save
-      render nothing: true, status: 201
+      render nothing: true, status: :created
     else
-      render nothing: true, status: 400
+      render nothing: true, status: :bad_request
     end
   end
 
   # Borrar un software
   def destroy
-    Software.find(params[:id]).destroy
+    @sw = Software.find(params[:id])
 
-    render nothing: true, status: 200
+    if @sw
+      @sw.destroy
+    end
+    render nothing: true, status: :ok
   end
 
   # Borrar todo el software de una sala
   def destroyAll
     Software.destroy_all(sala: params[:sala_id])
 
-    render nothing: true, status: 200
+    render nothing: true, status: :ok
   end
 
   # Modifica los atributos de un software
   def update
     @sw = Software.find(params[:id])
 
-    if @sw.update_attributes(params.require(:software).permit(:nombre, :version, :link))
-      render nothing: true, status: 200
+    if @sw
+      render nothing: true, status: :not_found
+    elsif @sw.update_attributes(params.require(:software).permit(:nombre, :version, :link))
+      render nothing: true, status: :ok
     else
-      render nothing: true, status: 400
+      render nothing: true, status: :bad_request
     end
   end
 end
