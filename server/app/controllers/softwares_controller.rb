@@ -4,7 +4,7 @@ class SoftwaresController < ApplicationController
   # probablemente se debera modificar.
   # Lista del software de una sala
   def index
-    @sw_list = Software.where(sala: params[:sala_id])
+    @sw_list = Software.where(sala_nombre: params[:sala_nombre])
 
     render json: @sw_list
   end
@@ -13,7 +13,7 @@ class SoftwaresController < ApplicationController
   def show
     @sw = Software.find_by(id: params[:id])
 
-    if @sw
+    if @sw && @sw.sala_nombre == params[:sala_nombre]
       render json: @sw
     else
       render nothing: true, status: :not_found
@@ -23,7 +23,7 @@ class SoftwaresController < ApplicationController
   # Crear software
   def create
     @sw = Software.new(params.require(:software).permit(:nombre, :version, :link))
-    @sw.sala = params[:sala_id]
+    @sw.sala = params[:sala_nombre]
     if @sw.save
       render nothing: true, status: :created
     else
@@ -43,7 +43,7 @@ class SoftwaresController < ApplicationController
 
   # Borrar todo el software de una sala
   def destroyAll
-    Software.destroy_all(sala: params[:sala_id])
+    Software.destroy_all(sala_nombre: params[:sala_nombre])
 
     render nothing: true, status: :ok
   end

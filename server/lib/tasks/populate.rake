@@ -25,7 +25,7 @@ namespace :db do
 
     softwares.each do |nombre, version, link|
       Software.create!(nombre: nombre, version: version, link: link,
-        sala_id: a.id)
+        sala_nombre: a.nombre)
     end
 
   end
