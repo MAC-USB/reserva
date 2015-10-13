@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009003559) do
+ActiveRecord::Schema.define(version: 20151013210005) do
 
   create_table "materias", force: :cascade do |t|
     t.string   "codigo"
@@ -37,11 +37,9 @@ ActiveRecord::Schema.define(version: 20151009003559) do
     t.string   "nombre"
     t.string   "version"
     t.string   "link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "sala_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "sala_nombre"
   end
-
-  add_index "softwares", ["sala_id"], name: "index_softwares_on_sala_id"
 
 end
