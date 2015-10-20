@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   	resources :softwares, only: [:index, :show, :create, :destroy, :update]
   end
 
-  resources :materias, param: :codigo, only: [:index, :create, :show, :update, :destroy]
+  resources :materias, only: [:index, :create, :show, :update, :destroy]
 
   resources :departamentos, param: :nombre
   

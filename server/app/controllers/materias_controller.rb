@@ -5,7 +5,7 @@ class MateriasController < ApplicationController
 	end
 
 	def show
-		@materia = Materia.find_by(codigo: params[:codigo])
+		@materia = Materia.find_by(id: params[:id])
 		if @materia
 			render json: @materia
 		else
@@ -23,7 +23,7 @@ class MateriasController < ApplicationController
 	end
 
 	def update
-		@materia = Materia.find_by(codigo: params[:codigo])
+		@materia = Materia.find_by(id: params[:id])
 		if @materia.nil?
 			render nothing: true, status: :not_found
 		elsif @materia.update_attributes(params.require(:materia).permit(:nombre, :departamento))
@@ -34,7 +34,7 @@ class MateriasController < ApplicationController
 	end
 
 	def destroy
-		@materia = Materia.find_by(codigo: params[:codigo])
+		@materia = Materia.find_by(id: params[:id])
 		if @materia
 			@materia.destroy
 		end

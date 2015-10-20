@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013210005) do
+ActiveRecord::Schema.define(version: 20151020184145) do
 
   create_table "departamentos", force: :cascade do |t|
     t.string   "nombre"
@@ -26,9 +26,12 @@ ActiveRecord::Schema.define(version: 20151013210005) do
     t.string   "codigo"
     t.string   "nombre"
     t.string   "departamento"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "departamento_id"
   end
+
+  add_index "materias", ["departamento_id"], name: "index_materias_on_departamento_id"
 
   create_table "salas", force: :cascade do |t|
     t.string   "nombre"
