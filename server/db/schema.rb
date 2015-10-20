@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20151020141642) do
   create_table "reservas", force: :cascade do |t|
     t.string   "sala_nombre"
     t.integer  "materia_id"
-    t.boolean  "video_beam"
+    t.boolean  "video_beam",  default: false
     t.text     "software"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "reservas", ["materia_id"], name: "index_reservas_on_materia_id"

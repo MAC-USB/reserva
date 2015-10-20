@@ -3,7 +3,7 @@ class CreateReservas < ActiveRecord::Migration
     create_table :reservas do |t|
       t.string :sala_nombre, index: true
       t.references :materia, index: true, foreign_key: true
-      t.boolean :video_beam
+      t.boolean :video_beam, default: false
       t.text :software
 
       t.timestamps null: false
