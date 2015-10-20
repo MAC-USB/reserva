@@ -8,6 +8,8 @@ namespace :db do
         video_beam: true, capacidad: 19, ubicacion: "MYS planta baja",
         responsable: "AA")
 
+    d = departamento.create!(nombre: "")
+
     materias = [
       [ "CI2691", "Laboratorio de Algoritmos y Estructuras I", "CI"],
       ["CO3211", "Cálculo numérico", "CI"],
