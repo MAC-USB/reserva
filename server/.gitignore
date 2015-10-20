@@ -22,3 +22,4 @@
 # Ignorar tests y assets
 test/*
 app/assets/*
+spring/*
