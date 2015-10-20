@@ -1,4 +1,5 @@
 class Departamento < ActiveRecord::Base
+  before_save {self.codigo = codigo.upcase}
   
   validates :nombre, presence: true, uniqueness: { case_sensitive: false } 
   
@@ -7,4 +8,7 @@ class Departamento < ActiveRecord::Base
   validates :correo, presence: true,format: { with: VALID_EMAIL_REGEX }
   
   validates :pcontacto, presence: true
+
+  validates :codigo, presence: true, format: {with: /\A[a-zA-Z]{2}\z/}
+
 end
