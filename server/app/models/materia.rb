@@ -1,5 +1,5 @@
 class Materia < ActiveRecord::Base
-  has_many :resevas
+  has_many :reservas
 	before_save {self.codigo = codigo.upcase}
 	validates :nombre, presence: true
 	validates :codigo, format: {with: /\A[a-zA-Z]{2}\d{4}\z/},
