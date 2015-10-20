@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151020192521) do
+=======
+ActiveRecord::Schema.define(version: 20151020141642) do
+>>>>>>> Modelo-reserva
 
   create_table "departamentos", force: :cascade do |t|
     t.string   "nombre"
