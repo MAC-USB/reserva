@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013210005) do
+ActiveRecord::Schema.define(version: 20151020141642) do
 
   create_table "departamentos", force: :cascade do |t|
     t.string   "nombre"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20151013210005) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "reservas", force: :cascade do |t|
+    t.string   "sala_nombre"
+    t.integer  "materia_id"
+    t.boolean  "video_beam"
+    t.text     "software"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "reservas", ["materia_id"], name: "index_reservas_on_materia_id"
+  add_index "reservas", ["sala_nombre"], name: "index_reservas_on_sala_nombre"
 
   create_table "salas", force: :cascade do |t|
     t.string   "nombre"

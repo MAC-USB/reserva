@@ -1,4 +1,5 @@
 class Materia < ActiveRecord::Base
+  has_many :resevas
 	before_save {self.codigo = codigo.upcase}
 	validates :nombre, presence: true
 	validates :codigo, presence: true,
