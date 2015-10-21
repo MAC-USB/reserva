@@ -6,30 +6,21 @@ class DepartamentosController < ApplicationController
   end
   
   def show
-    @dep = Departamento.find(params[:id])
+    @dep = Departamento.find_by(nombre: params[:nombre])
     render json: @dep
   end
   
-  # def create
-  #   @dep = Departamento.new(dep_params)
-  #   if @dep.save
-  #     render nothing: true, status: 201
-  #   else
-  #     render nothing: true, status: 400
-  #   end
-  # end
-  
+
   def update
-    @dep = Departamento.find(params[:id])
+    puts params
+    @dep = Departamento.find_by(nombre: params[:nombre])
     if @dep.update_attributes(dep_params)
        render nothing: true, status: 200
-    else
+    else 
       render nothing: true, status: 400
     end
   end
   
-  # def destroy
-  # end
   
   private
 
