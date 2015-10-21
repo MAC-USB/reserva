@@ -22,7 +22,11 @@
 # Ignorar tests y assets
 test/*
 app/assets/*
+<<<<<<< HEAD
 
 #Ignorar .pid 
 
 *.pid
+
+spring/*
+

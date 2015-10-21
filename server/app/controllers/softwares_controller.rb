@@ -23,7 +23,7 @@ class SoftwaresController < ApplicationController
   # Crear software
   def create
     @sw = Software.new(params.require(:software).permit(:nombre, :version, :link))
-    @sw.sala = params[:sala_nombre]
+    @sw.sala_nombre = params[:sala_nombre]
     if @sw.save
       render nothing: true, status: :created
     else
@@ -33,7 +33,7 @@ class SoftwaresController < ApplicationController
 
   # Borrar un software
   def destroy
-    @sw = Software.find(params[:id])
+    @sw = Software.find_by(id: params[:id])
 
     if @sw
       @sw.destroy
@@ -50,9 +50,9 @@ class SoftwaresController < ApplicationController
 
   # Modifica los atributos de un software
   def update
-    @sw = Software.find(params[:id])
+    @sw = Software.find_by(id: params[:id])
 
-    if @sw
+    if not @sw
       render nothing: true, status: :not_found
     elsif @sw.update_attributes(params.require(:software).permit(:nombre, :version, :link))
       render nothing: true, status: :ok
