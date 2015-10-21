@@ -22,3 +22,7 @@
 # Ignorar tests y assets
 test/*
 app/assets/*
+
+#Ignorar .pid 
+
+*.pid
