@@ -19,5 +19,5 @@ class SalasController < ApplicationController
       render nothing: true, status: 400
     end
   end
-
+ 
 end
