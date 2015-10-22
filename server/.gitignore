@@ -22,4 +22,12 @@
 # Ignorar tests y assets
 test/*
 app/assets/*
+<<<<<<< HEAD
+
+#Ignorar .pid 
+*.pid
+
 spring/*
+
+#Ignorar seeds 
+db/seeds.rb
