@@ -11,16 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20151020192521) do
-=======
-ActiveRecord::Schema.define(version: 20151020141642) do
->>>>>>> Modelo-reserva
+ActiveRecord::Schema.define(version: 20151022154508) do
 
   create_table "departamentos", force: :cascade do |t|
     t.string   "nombre"
     t.string   "telefono"
-    t.string   "correo"
     t.string   "pcontacto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,7 +25,6 @@ ActiveRecord::Schema.define(version: 20151020141642) do
   create_table "materias", force: :cascade do |t|
     t.string   "codigo"
     t.string   "nombre"
-    t.string   "departamento"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "departamento_id"

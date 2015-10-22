@@ -8,11 +8,11 @@ namespace :db do
         video_beam: true, capacidad: 19, ubicacion: "MYS planta baja",
         responsable: "AA")
 
-    d = departamento.create!(nombre: "")
+    d = Departamento.create!(nombre: "Computacion", codigo:"ci", pcontacto:"Dios")
 
     materias = [
-      [ "CI2691", "Laboratorio de Algoritmos y Estructuras I", "CI"],
-      ["CO3211", "Cálculo numérico", "CI"],
+      [ "CI2691", "Laboratorio de Algoritmos y Estructuras I"],
+      ["CO3211", "Cálculo numérico"],
     ]
 
     softwares = [
@@ -28,7 +28,7 @@ namespace :db do
     ]
 
     materias.each do |codigo, nombre, dpto|
-      Materia.create!(codigo: codigo, nombre: nombre, departamento: dpto)
+      Materia.create!(codigo: codigo, nombre: nombre, departamento: d)
     end
 
     softwares.each do |nombre, version, link|
