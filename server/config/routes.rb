@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   resources :materias, only: [:index, :create, :show, :update, :destroy]
 
   resources :departamentos, param: :nombre
-  
+
 end

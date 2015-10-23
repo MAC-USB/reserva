@@ -12,12 +12,12 @@ class SalasController < ApplicationController
   def update
     @sala = Sala.find(params[:id])
     if @sala.update_attributes(params.require(:sala).permit(
-      :name, :capacidad, :ubicacion, :responsable, 
+      :name, :capacidad, :ubicacion, :responsable,
       :windows, :linux, :video_beam))
       render nothing: true, status: 200
     else
       render nothing: true, status: 400
     end
   end
- 
+
 end
