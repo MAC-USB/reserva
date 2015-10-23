@@ -39,7 +39,7 @@ namespace :db do
     reservas.each do |sala_nombre, video_beam, software|
       Materia.all.each do |materia|
         Reserva.create!(sala_nombre: sala_nombre, materia: materia,
-          video_beam: video_beam, software: software)
+          video_beam: video_beam, requerimientos: software)
       end
     end
 

@@ -14,7 +14,7 @@ class MateriasController < ApplicationController
 	end
 
 	def create
-		@materia = Materia.new(params.require(:materia).permit(:nombre, :codigo, :departamento))
+		@materia = Materia.new(params.require(:materia).permit(:nombre, :codigo, :departamento_id))
 		if @materia.save
 			render nothing: true, status: :created
 		else
@@ -26,7 +26,7 @@ class MateriasController < ApplicationController
 		@materia = Materia.find_by(id: params[:id])
 		if @materia.nil?
 			render nothing: true, status: :not_found
-		elsif @materia.update_attributes(params.require(:materia).permit(:nombre, :departamento))
+		elsif @materia.update_attributes(params.require(:materia).permit(:nombre, :codigo, :departamento_id))
 			render nothing: true, status: :ok
 		else
 			render nothing: true, status: :conflict
