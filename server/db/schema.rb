@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151023014232) do
+ActiveRecord::Schema.define(version: 20151027181710) do
 
   create_table "departamentos", force: :cascade do |t|
     t.string   "nombre"
@@ -66,5 +66,30 @@ ActiveRecord::Schema.define(version: 20151023014232) do
   end
 
   add_index "softwares", ["sala_nombre"], name: "index_softwares_on_sala_nombre"
+
+  create_table "usuarios", force: :cascade do |t|
+    t.string   "provider",               default: "email", null: false
+    t.string   "uid",                    default: "",      null: false
+    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "nombre"
+    t.string   "email"
+    t.string   "telefono"
+    t.string   "carnet"
+    t.text     "tokens"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
+  add_index "usuarios", ["email"], name: "index_usuarios_on_email"
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
+  add_index "usuarios", ["uid", "provider"], name: "index_usuarios_on_uid_and_provider", unique: true
 
 end
