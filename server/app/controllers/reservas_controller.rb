@@ -1,4 +1,4 @@
-class ReservaController < ApplicationController
+class ReservasController < ApplicationController
 
   def create
     @reserva = Reserva.new(params.require(:reserva)
@@ -42,7 +42,7 @@ class ReservaController < ApplicationController
     end
     render nothing: true, status: :ok
   end
-  
+
   def destroyAll
     Reserva.destroy_all(sala_nombre: params[:sala_nombre])
     render nothing: true, status: :ok
