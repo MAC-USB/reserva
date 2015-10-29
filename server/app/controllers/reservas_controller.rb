@@ -1,8 +1,8 @@
 class ReservasController < ApplicationController
 
   def create
-    @reserva = Reserva.new(params.require(:reserva)
-      .permit(:sala_nombre, :materia, :video_beam, :requerimientos))
+    print params
+    @reserva = Reserva.new(params.require(:reserva).permit(:sala_nombre, :materia_id, :video_beam, :requerimientos))
     if @reserva.save!
       render nothing: true, status: :created
     else
