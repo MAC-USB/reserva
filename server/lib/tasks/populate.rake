@@ -19,42 +19,6 @@ namespace :db do
       ["Emacs", "2.0", "https://www.gnu.org/software/emacs/"]
     ]
 
-    #Para crear, comparar y modificar horarios ver: https://github.com/JackC/tod
-    #nota: etsos horarios no se asignan a reserva, se crean solo como
-    #ilustracion
-    horarios_lista = [
-      [
-        #Lunes, 7-8
-        Horario.create!(dia: 1,
-        hora_inicio: Tod::TimeOfDay.new(13,30),
-        hora_fin: Tod::TimeOfDay.new(15,30)),
-        #Miercoles, 1-2
-        Horario.create!(dia: 3,
-        hora_inicio: Tod::TimeOfDay.new(7,30),
-        hora_fin: Tod::TimeOfDay.new(9,30))
-      ],
-      [
-        #Viernes, 1-3
-        Horario.create!(dia: 5,
-        hora_inicio: Tod::TimeOfDay.new(7,30),
-        hora_fin: Tod::TimeOfDay.new(10,30))
-      ],
-      [
-        #Lunes, 7-8
-        Horario.create!(dia: 1,
-        hora_inicio: Tod::TimeOfDay.new(13,30),
-        hora_fin: Tod::TimeOfDay.new(15,30)),
-        #Miercoles, 1-2
-        Horario.create!(dia: 3,
-        hora_inicio: Tod::TimeOfDay.new(7,30),
-        hora_fin: Tod::TimeOfDay.new(9,30)),
-        #Viernes, 9-10
-        Horario.create!(dia: 5,
-        hora_inicio: Tod::TimeOfDay.new(15,30),
-        hora_fin: Tod::TimeOfDay.new(17,30))
-      ]
-    ]
-
     reservas = [
       ["A", true, ""],
       ["A", false, "Vim, Emacs, Sublime"],
@@ -76,10 +40,30 @@ namespace :db do
     end
     puts "Done\n"
 
+    #Para crear, comparar y modificar horarios ver: https://github.com/JackC/tod
+    r1_horarios = [
+        #Lunes, 7-8
+        Horario.create!(dia: 1,
+        hora_inicio: Tod::TimeOfDay.new(13,30),
+        hora_fin: Tod::TimeOfDay.new(15,30)),
+        #Miercoles, 1-2
+        Horario.create!(dia: 3,
+        hora_inicio: Tod::TimeOfDay.new(7,30),
+        hora_fin: Tod::TimeOfDay.new(9,30)),
+        #Viernes, 9-10
+        Horario.create!(dia: 5,
+        hora_inicio: Tod::TimeOfDay.new(15,30),
+        hora_fin: Tod::TimeOfDay.new(17,30))
+    ]
+
+    r1 = Reserva.create!(sala_nombre: @a, materia: Materia.first,
+          video_beam: true, requerimientos: "",
+          horarios: r1_horarios)
+
     puts "Creating Reservas..."
     reservas.each do |sala_nombre, video_beam, requerimientos|
       Materia.all.each do |materia|
-        inicio = rand(15)
+        inicio = rand(10) + 7
         @h = Horario.create!(dia: rand(5),
         hora_inicio: Tod::TimeOfDay.new(inicio,30),
         hora_fin: Tod::TimeOfDay.new(inicio + 2,30))
