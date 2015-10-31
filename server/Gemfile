@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'tod'
+
 gem 'devise'
 gem 'omniauth'
 gem 'devise_token_auth'
