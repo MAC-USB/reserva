@@ -56,7 +56,7 @@ namespace :db do
         hora_fin: Tod::TimeOfDay.new(17,30))
     ]
 
-    r1 = Reserva.create!(sala_nombre: @a, materia: Materia.first,
+    r1 = Reserva.create!(sala_nombre: @a.nombre, materia: Materia.first,
           video_beam: true, requerimientos: "",
           horarios: r1_horarios, semanas_activas: [1,2,3])
 

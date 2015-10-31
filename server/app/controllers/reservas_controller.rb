@@ -1,8 +1,19 @@
 class ReservasController < ApplicationController
 
   def create
-    print params
-    @reserva = Reserva.new(params.require(:reserva).permit(:sala_nombre, :materia_id, :video_beam, :requerimientos))
+    r_params = params.require(:reserva)
+      .permit(:sala_nombre, :materia_id, :video_beam,
+      :requerimientos, :semanas_activas => [], :horarios => [[]])
+    horarios_created = []
+    if params[:reserva][:horarios]
+      params[:reserva][:horarios].each do |h|
+        horarios_created << Horario.create!(dia: h.first,
+          hora_inicio: Tod::TimeOfDay(h.second),
+          hora_fin: Tod::TimeOfDay(h.third))
+      end
+      r_params[:horarios] = horarios_created
+    end
+    @reserva = Reserva.new(r_params)
     if @reserva.save!
       render nothing: true, status: :created
     else
@@ -28,7 +39,8 @@ class ReservasController < ApplicationController
     @reserva = Reserva.find_by(id: params[:id])
     if not @reserva
       render nothing: true, status: :not_found
-    elsif @reserva.update_attributes(params.require(:reserva).permit(:sala_nombre, :materia))
+    elsif @reserva.update_attributes(params.require(:reserva)
+      .permit(:sala_nombre, :materia))
       render nothing: true, status: :ok
     else
       render nothing: true, status: :bad_request

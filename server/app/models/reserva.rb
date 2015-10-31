@@ -19,7 +19,7 @@ class Reserva < ActiveRecord::Base
   belongs_to :sala, primary_key: "nombre", foreign_key: "sala_nombre"
   has_many :horarios
   validates :sala_nombre, presence: true
-  validates :materia, presence: true
+  validates :materia_id, presence: true
   validates :horarios, presence: true
   validates :semanas_activas, presence: true
   serialize :semanas_activas, Array
