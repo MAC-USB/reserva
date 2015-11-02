@@ -9,9 +9,11 @@
 ###Setup del front-end
 
 1. Instalar `nodejs` y `npm`
+
 2. Instalar los componentes de yeoman:
 
 `# npm install -g grunt-cli bower yo generator-karma generator-angular`
+
 3. En la carpeta app/ instalar los componentes de bower y npm:
 
 `$ bower install`
