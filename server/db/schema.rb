@@ -68,9 +68,12 @@ ActiveRecord::Schema.define(version: 20151027181710) do
   add_index "softwares", ["sala_nombre"], name: "index_softwares_on_sala_nombre"
 
   create_table "usuarios", force: :cascade do |t|
-    t.string   "provider",           default: "email", null: false
-    t.string   "uid",                default: "",      null: false
-    t.string   "encrypted_password", default: "",      null: false
+    t.string   "provider",               default: "email", null: false
+    t.string   "uid",                    default: "",      null: false
+    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.string   "nombre"
     t.string   "email"
     t.string   "telefono"
@@ -81,6 +84,7 @@ ActiveRecord::Schema.define(version: 20151027181710) do
   end
 
   add_index "usuarios", ["email"], name: "index_usuarios_on_email"
+  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   add_index "usuarios", ["uid", "provider"], name: "index_usuarios_on_uid_and_provider", unique: true
 
 end
