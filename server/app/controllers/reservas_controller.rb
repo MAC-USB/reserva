@@ -16,7 +16,7 @@ class ReservasController < ApplicationController
     end
     @reserva = Reserva.new(r_params)
     if @reserva.save!
-      render nothing: true, status: :created
+      render :json => @reserva.id, status: :created
     else
       render nothing: true, status: :conflict
     end

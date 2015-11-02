@@ -14,7 +14,7 @@ class DepartamentosController < ApplicationController
   def update
     puts params
     @dep = Departamento.find_by(nombre: params[:nombre])
-    if @dep.update_attributes(dep_params)
+    if @dep.update_attributes!(dep_params)
        render nothing: true, status: 200
     else
       render nothing: true, status: 400

@@ -24,8 +24,8 @@ class SoftwaresController < ApplicationController
   def create
     @sw = Software.new(params.require(:software).permit(:nombre, :version, :link))
     @sw.sala_nombre = params[:sala_nombre]
-    if @sw.save
-      render nothing: true, status: :created
+    if @sw.save!
+      render :json => @sw.id, status: :created
     else
       render nothing: true, status: :bad_request
     end
@@ -34,17 +34,15 @@ class SoftwaresController < ApplicationController
   # Borrar un software
   def destroy
     @sw = Software.find_by(id: params[:id])
-
     if @sw
-      @sw.destroy
+      @sw.destroy!
     end
     render nothing: true, status: :ok
   end
 
   # Borrar todo el software de una sala
   def destroyAll
-    Software.destroy_all(sala_nombre: params[:sala_nombre])
-
+    Software.destroy_all!(sala_nombre: params[:sala_nombre])
     render nothing: true, status: :ok
   end
 
@@ -54,7 +52,7 @@ class SoftwaresController < ApplicationController
 
     if not @sw
       render nothing: true, status: :not_found
-    elsif @sw.update_attributes(params.require(:software).permit(:nombre, :version, :link))
+    elsif @sw.update_attributes!(params.require(:software).permit(:nombre, :version, :link))
       render nothing: true, status: :ok
     else
       render nothing: true, status: :bad_request

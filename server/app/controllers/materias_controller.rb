@@ -15,8 +15,8 @@ class MateriasController < ApplicationController
 
 	def create
 		@materia = Materia.new(params.require(:materia).permit(:nombre, :codigo, :departamento_id))
-		if @materia.save
-			render nothing: true, status: :created
+		if @materia.save!
+			render :json => @materia.id, status: :created
 		else
 			render nothing: true, status: :conflict
 		end
@@ -26,7 +26,7 @@ class MateriasController < ApplicationController
 		@materia = Materia.find_by(id: params[:id])
 		if @materia.nil?
 			render nothing: true, status: :not_found
-		elsif @materia.update_attributes(params.require(:materia).permit(:nombre, :codigo, :departamento_id))
+		elsif @materia.update_attributes!(params.require(:materia).permit(:nombre, :codigo, :departamento_id))
 			render nothing: true, status: :ok
 		else
 			render nothing: true, status: :conflict
@@ -36,7 +36,7 @@ class MateriasController < ApplicationController
 	def destroy
 		@materia = Materia.find_by(id: params[:id])
 		if @materia
-			@materia.destroy
+			@materia.destroy!
 		end
 
 		render nothing: true, status: :ok
