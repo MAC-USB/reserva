@@ -2,9 +2,9 @@ class Trimestre < ActiveModel::Validator
   def validate(record)
   	begin
   	  record.semanas_activas.each do |s|
-  	  	unless 0 <= s and s <= 12
+  	  	unless 0 < s and s <= 12
   	  	  record.errors[:semanas_activas] <<
-  	  	  "debe contener sólo números entre 0 y 12"
+  	  	  "debe contener sólo números entre 1 y 12"
   	  	end
   	  end
   	rescue ArgumentError
