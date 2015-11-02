@@ -25,4 +25,8 @@ DeviseTokenAuth.setup do |config|
   # attribute updates. Set it to :password if you want it to be checked only if
   # password is updated.
   config.check_current_password_before_update = :attributes
+
+  # Ál confirmar seras rederigido a este URI si el cliente no mando
+  # confirm_success_url como parametro
+  # config.default_confirm_success_url = "https://google.com"
 end

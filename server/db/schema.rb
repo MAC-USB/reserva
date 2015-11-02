@@ -74,6 +74,10 @@ ActiveRecord::Schema.define(version: 20151027181710) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.string   "nombre"
     t.string   "email"
     t.string   "telefono"
@@ -83,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151027181710) do
     t.datetime "updated_at"
   end
 
+  add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
   add_index "usuarios", ["email"], name: "index_usuarios_on_email"
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   add_index "usuarios", ["uid", "provider"], name: "index_usuarios_on_uid_and_provider", unique: true
