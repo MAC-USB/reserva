@@ -4,6 +4,7 @@ class ReservasController < ApplicationController
     r_params = params.require(:reserva)
       .permit(:sala_nombre, :materia_id, :video_beam,
       :requerimientos, :semanas_activas => [], :horarios => [[]])
+    r_params[:sala_nombre] = params[:sala_nombre]
     horarios_created = []
     if params[:reserva][:horarios]
       params[:reserva][:horarios].each do |h|
