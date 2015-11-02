@@ -24,4 +24,23 @@ class Reserva < ActiveRecord::Base
   validates :semanas_activas, presence: true
   serialize :semanas_activas, Array
   validates_with Trimestre
+
+  def as_json(options)
+    result = {}
+    horarios_json = []
+    horarios.each do |h|
+      horarios_json << [h.dia, h.hora_inicio.strftime("%H:%M"),
+        h.hora_fin.strftime("%H:%M")]
+    end
+    result = { :id => id,
+      :sala_nombre => sala_nombre,
+      :materia_id => materia_id,
+      :semanas_activas => semanas_activas,
+      :requerimientos => requerimientos,
+      :created_at => created_at,
+      :updated_at => updated_at,
+      :video_beam => video_beam,
+      :horarios => horarios_json
+    }
+  end
 end
