@@ -64,7 +64,7 @@ namespace :db do
     reservas.each do |sala_nombre, video_beam, requerimientos|
       Materia.all.each do |materia|
         inicio = rand(10) + 7
-        @h = Horario.create!(dia: rand(5),
+        @h = Horario.create!(dia: 1 + rand(4),
         hora_inicio: Tod::TimeOfDay.new(inicio,30),
         hora_fin: Tod::TimeOfDay.new(inicio + 2,30))
         @r = Reserva.create!(sala_nombre: sala_nombre, materia: materia,
