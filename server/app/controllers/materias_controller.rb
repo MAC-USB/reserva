@@ -15,7 +15,9 @@ class MateriasController < ApplicationController
 
 	def create
 		@materia = Materia.new(params.require(:materia).permit(:nombre, :codigo, :departamento_id))
-		if @materia.save!
+		if params[:materia].key?(:departamento_id) and !Departamento.exists?(params[:materia][:departamento_id])
+			render nothing: true, status: :conflict
+		elsif @materia.save
 			render :json => @materia.id, status: :created
 		else
 			render nothing: true, status: :conflict
@@ -26,7 +28,9 @@ class MateriasController < ApplicationController
 		@materia = Materia.find_by(id: params[:id])
 		if @materia.nil?
 			render nothing: true, status: :not_found
-		elsif @materia.update_attributes!(params.require(:materia).permit(:nombre, :codigo, :departamento_id))
+		elsif params[:materia].key?(:departamento_id) and !Departamento.exists?(params[:materia][:departamento_id])
+			render nothing: true, status: :conflict
+		elsif @materia.update_attributes(params.require(:materia).permit(:nombre, :codigo, :departamento_id))
 			render nothing: true, status: :ok
 		else
 			render nothing: true, status: :conflict
@@ -41,5 +45,4 @@ class MateriasController < ApplicationController
 
 		render nothing: true, status: :ok
 	end
-
 end

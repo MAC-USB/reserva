@@ -1,7 +1,7 @@
 ## Reserva del Laboratorio Docente de Aulas Computarizadas (LDAC)
 ### Versiones
 * Rails v4.2.2 
-* ruby v2.2.1
+* ruby v2.2.2
 * grunt-cli v0.1.13
 * grunt v0.4.5
 * bower v1.6.5
@@ -16,6 +16,8 @@
 
 3. En la carpeta app/ instalar los componentes de bower y npm:
 
+`$ cd app/`
+
 `$ bower install`
 
 `$ npm install`
@@ -24,7 +26,7 @@
 
 * Para crear controladores, rutas, directivas, filtros, vistas, servicios o decoradores utilizar yo angular:
 
-`$ yo angular:[controller|roure|view|...] name`
+`$ yo angular:[controller|route|view|...] name`
 
 Para mas informacion leer el [README](https://github.com/yeoman/generator-angular#readme) de yeoman-angular
 
