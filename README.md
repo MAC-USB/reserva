@@ -24,7 +24,7 @@
 
 * Para crear controladores, rutas, directivas, filtros, vistas, servicios o decoradores utilizar yo angular:
 
-`$ yo angular:[controller|roure|view|...] name`
+`$ yo angular:[controller|route|view|...] name`
 
 Para mas informacion leer el [README](https://github.com/yeoman/generator-angular#readme) de yeoman-angular
 
