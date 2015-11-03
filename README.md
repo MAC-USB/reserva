@@ -15,6 +15,7 @@
 `# npm install -g grunt-cli bower yo generator-karma generator-angular`
 
 3. En la carpeta app/ instalar los componentes de bower y npm:
+`$ cd app/`
 
 `$ bower install`
 
