@@ -1,7 +1,7 @@
 ## Reserva del Laboratorio Docente de Aulas Computarizadas (LDAC)
 ### Versiones
 * Rails v4.2.2 
-* ruby v2.2.1
+* ruby v2.2.2
 * grunt-cli v0.1.13
 * grunt v0.4.5
 * bower v1.6.5
