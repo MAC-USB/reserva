@@ -4,4 +4,9 @@ class Usuario < ActiveRecord::Base
           :recoverable, :rememberable, :validatable,
           :confirmable
   include DeviseTokenAuth::Concerns::User
+
+  # Las validaciones del password e email las hace el modulo de
+  # validatable por defecto.
+  validates :nombre, presence: true
+  validates :telefono, presence: true
 end

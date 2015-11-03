@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  mount_devise_token_auth_for 'Usuario', at: 'auth'
+  mount_devise_token_auth_for 'Usuario', at: 'auth', controllers: {
+    registrations: "usuarios/registrations"
+  }
 
   resources :salas, param: :nombre do |ruta_sala|
   	delete "#{ruta_sala}/softwares" => 'softwares#destroyAll'
