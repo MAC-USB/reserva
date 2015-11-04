@@ -5,6 +5,8 @@ class Usuario < ActiveRecord::Base
           :confirmable
   include DeviseTokenAuth::Concerns::User
 
+  belongs_to :departamento
+
   # Las validaciones del password e email las hace el modulo de
   # validatable por defecto.
   validates :nombre, presence: true

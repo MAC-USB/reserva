@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031065708) do
+ActiveRecord::Schema.define(version: 20151104154712) do
 
   create_table "departamentos", force: :cascade do |t|
     t.string   "nombre"
@@ -97,9 +97,14 @@ ActiveRecord::Schema.define(version: 20151031065708) do
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "titulo"
+    t.string   "oficina"
+    t.string   "carrera"
+    t.integer  "departamento_id"
   end
 
   add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
+  add_index "usuarios", ["departamento_id"], name: "index_usuarios_on_departamento_id"
   add_index "usuarios", ["email"], name: "index_usuarios_on_email"
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   add_index "usuarios", ["uid", "provider"], name: "index_usuarios_on_uid_and_provider", unique: true
