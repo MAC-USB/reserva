@@ -2,7 +2,7 @@ namespace :db do
   desc "Erase and fill database"
   task :populate => :environment do
 
-    [Materia, Software, Reserva, Horario].each(&:delete_all)
+    [Materia, Software, Reserva, Horario, Usuario].each(&:delete_all)
 
     @d = Departamento.find_by(codigo: "CI")
 
@@ -23,6 +23,11 @@ namespace :db do
       ["A", true, ""],
       ["A", false, "Vim, Emacs, Sublime"],
       ["A", true, "Supercollider"]
+    ]
+
+    usuarios = [
+      ["Pepe", "pepe@pepe.com", "12345678", "12345678", "04145551234", "05-05054"],
+      ["Jose", "jose@jose.com", "12345678", "12345678", "04167771234", "01-12123"]
     ]
 
     puts "Creating Materias..."
@@ -72,6 +77,16 @@ namespace :db do
           horarios: [@h], semanas_activas: [rand(12)])
         puts @r.inspect
       end
+    end
+    puts "Done\n"
+
+    puts "Creating Usuarios..."
+    usuarios.each do | nombre, email, password, password_confirmation, telefono, carnet |
+      @u = Usuario.create!(nombre: nombre, email: email, password: password,
+          password_confirmation: password_confirmation, telefono: telefono,
+          carnet: carnet)
+      @u.confirm!
+      puts @u.inspect
     end
     puts "Done\n"
 
