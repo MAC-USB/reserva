@@ -1,6 +1,6 @@
 class Anuncio < ActiveRecord::Base
   belongs_to :usuario
-  validate :contenido, presence: true,
+  validates :contenido, presence: true,
             length: {in: 1..140}
-  validate :usuario, presence: true
+  validates :usuario, presence: true
 end

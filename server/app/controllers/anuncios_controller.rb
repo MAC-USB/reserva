@@ -1,4 +1,6 @@
 class AnunciosController < ApplicationController
+  before_action :authenticate_usuario!, only: [:create]
+
   def index
     @list = Anuncio.all
     render json: @list
@@ -16,9 +18,9 @@ class AnunciosController < ApplicationController
   def create
     @anuncio = Anuncio.new(params.require(:anuncio).permit(:contenido))
     ## El usuario del anuncio sera el usuario autenticado
-    @anuncio.usuario_id = current_user.id
+    @anuncio.usuario_id = current_usuario.id
     if @anuncio.save
-      render json: @anuncio.save, status: :created
+      render json: @anuncio.id, status: :created
     else
       render nothing: true, status: :conflict
     end
@@ -28,7 +30,7 @@ class AnunciosController < ApplicationController
     @anuncio = Anuncio.find_by(id: params[:id])
     if @anuncio.nil?
       render nothing: true, status: :not_found
-    elsif @anuncio.update_attributes(params.require(anuncio).permit(:contenido))
+    elsif @anuncio.update_attributes(params.require(:anuncio).permit(:contenido))
       render nothing: true, status: :ok
     else
       render nothing: true, status: :conflict
