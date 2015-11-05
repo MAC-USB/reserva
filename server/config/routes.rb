@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 
   resources :departamentos, param: :nombre
 
+  resources :anuncios, only: [:index, :create, :show, :update, :destroy]
+
 end
