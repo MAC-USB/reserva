@@ -2,7 +2,7 @@ namespace :db do
   desc "Erase and fill database"
   task :populate => :environment do
 
-    [Materia, Software, Reserva, Horario, Usuario].each(&:delete_all)
+    [Materia, Software, Reserva, Horario, Usuario, Anuncio].each(&:delete_all)
 
     @d = Departamento.find_by(codigo: "CI")
 
@@ -28,6 +28,11 @@ namespace :db do
     usuarios = [
       ["Pepe", "pepe@pepe.com", "12345678", "12345678", "04145551234", "05-05054"],
       ["Jose", "jose@jose.com", "12345678", "12345678", "04167771234", "01-12123"]
+    ]
+
+    anuncios = [
+      "Hola este es el primer anuncio de Reserva.",
+      "Que nulo fue el primer anuncio. Chao."
     ]
 
     puts "Creating Materias..."
@@ -90,5 +95,13 @@ namespace :db do
     end
     puts "Done\n"
 
+    puts "Creating Anuncios..."
+    usuario = Usuario.first
+    anuncios.each do |contenido|
+      @a = Anuncio.create!(contenido: contenido, usuario: usuario)
+      puts @a.inspect
+    end
+    puts "Done\n"
+    
   end
 end
