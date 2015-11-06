@@ -6,6 +6,7 @@ class Usuario < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   belongs_to :departamento
+  has_one :sala, primary_key: "id", foreign_key: "responsable"
 
   VALID_CARNET = /\A\d{2}-\d{5}\z/
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104221239) do
+ActiveRecord::Schema.define(version: 20151105233427) do
 
   create_table "anuncios", force: :cascade do |t|
     t.text     "contenido"
@@ -69,13 +69,15 @@ ActiveRecord::Schema.define(version: 20151104221239) do
     t.string   "nombre"
     t.integer  "capacidad"
     t.text     "ubicacion"
-    t.string   "responsable"
+    t.integer  "responsable"
     t.boolean  "windows"
     t.boolean  "linux"
     t.boolean  "video_beam"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "salas", ["responsable"], name: "index_salas_on_responsable"
 
   create_table "softwares", force: :cascade do |t|
     t.string   "nombre"
