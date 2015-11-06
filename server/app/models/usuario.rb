@@ -7,6 +7,9 @@ class Usuario < ActiveRecord::Base
 
   belongs_to :departamento
   has_one :sala, primary_key: "id", foreign_key: "responsable"
+  has_many :reservas, foreign_key: "reservador_id"
+  has_many :reservas_encargadas, class_name: "Reserva", foreign_key: "encargado_id"
+  has_many :reservas_responsable, class_name: "Reserva", foreign_key: "responsable_id"
 
   VALID_CARNET = /\A\d{2}-\d{5}\z/
 

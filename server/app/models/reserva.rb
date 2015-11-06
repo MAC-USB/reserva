@@ -17,7 +17,11 @@ end
 class Reserva < ActiveRecord::Base
   belongs_to :materia
   belongs_to :sala, primary_key: "nombre", foreign_key: "sala_nombre"
+  belongs_to :reservador, class_name: "Usuario"
+  belongs_to :encargado, class_name: "Usuario"
+  belongs_to :responsable, class_name: "Usuario"
   has_many :horarios
+  validates :reservador_id, presence: true
   validates :sala_nombre, presence: true
   validates :materia_id, presence: true
   validates :horarios, presence: true

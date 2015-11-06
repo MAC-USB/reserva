@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105233427) do
+ActiveRecord::Schema.define(version: 20151106141129) do
 
   create_table "anuncios", force: :cascade do |t|
     t.text     "contenido"
@@ -60,9 +60,15 @@ ActiveRecord::Schema.define(version: 20151105233427) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "semanas_activas"
+    t.integer  "reservador_id"
+    t.integer  "encargado_id"
+    t.integer  "responsable_id"
   end
 
+  add_index "reservas", ["encargado_id"], name: "index_reservas_on_encargado_id"
   add_index "reservas", ["materia_id"], name: "index_reservas_on_materia_id"
+  add_index "reservas", ["reservador_id"], name: "index_reservas_on_reservador_id"
+  add_index "reservas", ["responsable_id"], name: "index_reservas_on_responsable_id"
   add_index "reservas", ["sala_nombre"], name: "index_reservas_on_sala_nombre"
 
   create_table "salas", force: :cascade do |t|
