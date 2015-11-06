@@ -79,7 +79,7 @@ namespace :db do
         hora_fin: Tod::TimeOfDay.new(inicio + 2,30))
         @r = Reserva.create!(sala_nombre: sala_nombre, materia: materia,
           video_beam: video_beam, requerimientos: requerimientos,
-          horarios: [@h], semanas_activas: [rand(12)])
+          horarios: [@h], semanas_activas: [rand(12)+1])
         puts @r.inspect
       end
     end
@@ -102,6 +102,6 @@ namespace :db do
       puts @a.inspect
     end
     puts "Done\n"
-    
+
   end
 end
