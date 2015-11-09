@@ -5,7 +5,6 @@ class Usuario < ActiveRecord::Base
           :confirmable
   include DeviseTokenAuth::Concerns::User
 
-  belongs_to :departamento
   has_one :sala, primary_key: "id", foreign_key: "responsable"
   has_many :reservas, foreign_key: "reservador_id"
   has_many :reservas_encargadas, class_name: "Reserva", foreign_key: "encargado_id"
