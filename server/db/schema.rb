@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106141129) do
+ActiveRecord::Schema.define(version: 20151109174711) do
 
   create_table "anuncios", force: :cascade do |t|
     t.text     "contenido"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20151106141129) do
   create_table "departamentos", force: :cascade do |t|
     t.string   "nombre"
     t.string   "telefono"
-    t.string   "pcontacto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "codigo"
@@ -117,11 +116,9 @@ ActiveRecord::Schema.define(version: 20151106141129) do
     t.string   "titulo"
     t.string   "oficina"
     t.string   "carrera"
-    t.integer  "departamento_id"
   end
 
   add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
-  add_index "usuarios", ["departamento_id"], name: "index_usuarios_on_departamento_id"
   add_index "usuarios", ["email"], name: "index_usuarios_on_email"
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   add_index "usuarios", ["uid", "provider"], name: "index_usuarios_on_uid_and_provider", unique: true

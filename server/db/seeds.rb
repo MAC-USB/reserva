@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Departamento.create!(nombre:"Matematica",pcontacto:"not set",codigo:"MA")
-Departamento.create!(nombre:"fisica",pcontacto:"not set",codigo:"FS")
-Departamento.create!(nombre: "Computacion", codigo:"CI", pcontacto:"not set")
+Departamento.create!(nombre:"Matematica",codigo:"MA")
+Departamento.create!(nombre:"fisica",codigo:"FS")
+Departamento.create!(nombre: "Computacion", codigo:"CI")
 
+# No se puede asignar un responsable porque no hay usuarios existentes
 Sala.create!(nombre: "A", windows: false, linux: true,
-        video_beam: true, capacidad: 19, ubicacion: "MYS planta baja",
-        responsable: "AA")
+        video_beam: true, capacidad: 19, ubicacion: "MYS planta baja")
