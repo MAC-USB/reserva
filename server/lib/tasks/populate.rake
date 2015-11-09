@@ -50,6 +50,16 @@ namespace :db do
     end
     puts "Done\n"
 
+    puts "Creating Usuarios..."
+    usuarios.each do | nombre, email, password, password_confirmation, telefono, carnet |
+      @u = Usuario.create!(nombre: nombre, email: email, password: password,
+          password_confirmation: password_confirmation, telefono: telefono,
+          carnet: carnet)
+      @u.confirm!
+      puts @u.inspect
+    end
+    puts "Done\n"
+
     #Para crear, comparar y modificar horarios ver: https://github.com/JackC/tod
     r1_horarios = [
         #Lunes, 7-8
@@ -66,11 +76,14 @@ namespace :db do
         hora_fin: Tod::TimeOfDay.new(17,30))
     ]
 
+    puts "Creating Reservas..."
+    usuario = Usuario.first
+
     r1 = Reserva.create!(sala_nombre: @a.nombre, materia: Materia.first,
           video_beam: true, requerimientos: "",
-          horarios: r1_horarios, semanas_activas: [1,2,3])
+          horarios: r1_horarios, semanas_activas: [1,2,3],
+          reservador: usuario)
 
-    puts "Creating Reservas..."
     reservas.each do |sala_nombre, video_beam, requerimientos|
       Materia.all.each do |materia|
         inicio = rand(10) + 7
@@ -79,21 +92,13 @@ namespace :db do
         hora_fin: Tod::TimeOfDay.new(inicio + 2,30))
         @r = Reserva.create!(sala_nombre: sala_nombre, materia: materia,
           video_beam: video_beam, requerimientos: requerimientos,
-          horarios: [@h], semanas_activas: [rand(12)+1])
+          horarios: [@h], semanas_activas: [rand(12)+1],
+          reservador: usuario)
         puts @r.inspect
       end
     end
     puts "Done\n"
 
-    puts "Creating Usuarios..."
-    usuarios.each do | nombre, email, password, password_confirmation, telefono, carnet |
-      @u = Usuario.create!(nombre: nombre, email: email, password: password,
-          password_confirmation: password_confirmation, telefono: telefono,
-          carnet: carnet)
-      @u.confirm!
-      puts @u.inspect
-    end
-    puts "Done\n"
 
     puts "Creating Anuncios..."
     usuario = Usuario.first
