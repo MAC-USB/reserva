@@ -40,4 +40,16 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
+    allow do
+      origins '*'
+
+      resource '*',
+        :headers => :any,
+        :methods => [:get, :post, :delete, :put, :patch, :options, :head],
+        :max_age => 0
+    end
+  end
+
 end
